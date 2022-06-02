@@ -1,43 +1,23 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MaterialApp(
-    home: DrawerMenu(),
-  ));
+void main(){
+  runApp(MaterialApp(home: FAB(),));
 }
 
-class DrawerMenu extends StatelessWidget {
+class FAB extends StatelessWidget {
+  const FAB({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Drawer Menu"),
+      appBar: AppBar(title: Text("Floating Action Button"),),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){},
+        child: Icon(Icons.message),
+        backgroundColor: Colors.green,
       ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            DrawerHeader(
-              child: Center(
-                  child: Text(
-                "Drawer Header",
-                style: TextStyle(fontSize: 30),
-              )),
-              decoration: BoxDecoration(color: Colors.red),
-            ),
-            ListTile(
-              title: Text("Contact Us"),
-              onTap: () {},
-            ),
-            ListTile(
-              title: Text("Return Policy"),
-              onTap: () {},
-            ),
-            ListTile(
-              title: Text("About Us"),
-              onTap: () {},
-            ),
-          ],
-        ),
+      body: Center(
+        child: Text("Floating action button"),
       ),
     );
   }
