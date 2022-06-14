@@ -1,37 +1,42 @@
 import 'package:flutter/material.dart';
+void main() => runApp(const SnackBarDemo());
 
-void main(){
-  runApp(MaterialApp(
-    home: toggleButton(),
-  ));
-}
-class toggleButton extends StatefulWidget {
-  const toggleButton({Key? key}) : super(key: key);
+class SnackBarDemo extends StatelessWidget {
+  const SnackBarDemo({super.key});
 
-  @override
-  State<toggleButton> createState() => _toggleButtonState();
-}
-
-class _toggleButtonState extends State<toggleButton> {
-  List<bool> list = [true, false, false];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Toggle Button Design"),),
-      body: Center(
-        child: ToggleButtons(
-          children: <Widget>[
-            Icon(Icons.ac_unit),
-            Icon(Icons.call),
-            Icon(Icons.cake),
-          ],
-          onPressed: (int index) {
-            setState(() {
-              list[index] = !list[index];
-            });
-          },
-          isSelected: list,
+    return MaterialApp(
+      title: 'SnackBar Demo',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('SnackBar Demo'),
         ),
+        body: SnackBarPage(),
+      ),
+    );
+  }
+}
+
+class SnackBarPage extends StatelessWidget {
+  const SnackBarPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ElevatedButton(
+        child: Text('Show SnackBar'),
+        onPressed: () {
+          final snackBar = SnackBar(
+            content: Text('Yay! A SnackBar!'),
+            action: SnackBarAction(
+              label: 'Undo',
+              onPressed: () {},
+            ),
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        },
+
       ),
     );
   }
